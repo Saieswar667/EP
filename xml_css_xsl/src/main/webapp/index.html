@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Parser with Get Details</title>
+    <style>
+        #details {
+            margin-top: 20px;
+            border: 1px solid #000;
+            padding: 10px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div>
+<button onclick="loadXMLDoc"()>getdetails</button>
+</div>
+     <h2>Bookstore Inventory</h2>
+    <table id="booksTable" border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Load XML document using XMLHttpRequest
+        function loadXMLDoc() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "book.xml", false); // false for synchronous request
+            xhttp.send();
+            return xhttp.responseXML;
+        }
+
+        // Parse XML and display in table
+        function displayBooks() {
+            // Load the XML document
+            let xmlDoc = loadXMLDoc("books.xml");
+
+            // Get the book elements
+            let books = xmlDoc.getElementsByTagName("book");
+
+            // Reference to the table body
+            let tableBody = document.getElementById("booksTable").getElementsByTagName("tbody")[0];
+
+            // Iterate through the books and add rows to the table
+            for (let i = 0; i < books.length; i++) {
+                let row = tableBody.insertRow();
+
+                // Add Title cell
+                let cell1 = row.insertCell(0);
+                cell1.textContent = books[i].getElementsByTagName("title")[0].textContent;
+
+                // Add Author cell
+                let cell2 = row.insertCell(1);
+                cell2.textContent = books[i].getElementsByTagName("author")[0].textContent;
+
+                // Add Price cell
+                let cell3 = row.insertCell(2);
+                cell3.textContent = books[i].getElementsByTagName("price")[0].textContent;
+            }
+        }
+
+        // Call the displayBooks function on page load
+        window.onload = function() {
+            displayBooks();
+        };
+    </script>
+</body>
+</html>

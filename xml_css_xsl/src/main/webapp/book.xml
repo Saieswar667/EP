@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="book.xsl"?>
+
+<bookstore>
+    <book>
+        <title>Effective Java</title>
+        <author>Joshua Bloch</author>
+        <price>45.00</price>
+    </book>
+    <book>
+        <title>Clean Code</title>
+        <author>Robert C. Martin</author>
+        <price>37.50</price>
+    </book>
+</bookstore>
